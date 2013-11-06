@@ -1,0 +1,221 @@
+<head>
+    <title>Arkansas State University Schedule Planner by ASM</title>
+</head>
+<body>
+    {{> nav_bar }}
+    {{> menu_bar }}
+    {{> body }}
+</body>
+
+<template name="body">
+    {{#if degree}}
+        {{> Load_State}}
+    {{else}}
+        {{> Default_State}}
+    {{/if}}
+</template>
+
+<template name="Default_State">
+    <div>
+        <h3> Welcome to the ASU Course Degree Planner by <a href="https://asm.cs.astate.edu">ASM!</a></h3>
+        <h3> To begin, fill out the above form and press submit. </h3>
+    </div>
+</template>
+
+<template name="Load_State">
+    {{> course_grid }}
+</template>
+
+
+<template name="course_grid">
+    <div id="hidden_courses">
+        <ul>
+        {{#each course}}
+            <li><div id='' class="{{category}} course core">{{Name}}</div></li>
+        {{/each}}
+        </ul>
+    </div>
+    <table>
+        <colgroup>
+            <col id="HeaderCol" class="header" />
+            <col id="CourseCol" class="course" />
+            <col id="TotalsCol" class="hours"  />
+        </colgroup>
+
+        <tr id="TransferRow">
+            <td class="header"> Transfer Credit </td>
+            <td id="Transfer_Courses" class="link fall"> </td>
+            <td id="Transfer_hrs" class="hours"> </td>
+        </tr>
+
+        <tr id="Fall1Row">
+            <td class="header"> Fall <span class="year1"> I </span> </td>
+            <td id="Fall1_Courses" class="link fall"> </td>
+            <td id="Fall1_hrs" class="hours"> </td>
+        </tr>
+
+        <tr id="Spring1Row">
+            <td class="header"> Spring <span class="year1"> I </span> </td>
+            <td id="Spring1_Courses" class="link spring"> </td>
+            <td id="Spring1_hrs" class="hours"> </td>
+        </tr>
+
+        <tr id="Summer1Row" class="summerrow">
+            <td class="header"> Summer <span class="year1"> I </span> </td>
+            <td id="Summer1_Courses" class="link summer"> </td>
+            <td id="Summer1_hrs" class="hours"> </td>
+        </tr>
+
+        <tr id="Fall2Row">
+            <td class="header"> Fall <span class="year2"> II </span> </td>
+            <td id="Fall2_Courses" class="link fall"> </td>
+            <td id="Fall2_hrs" class="hours"> </td>
+        </tr>
+
+        <tr id="Spring2Row">
+            <td class="header"> Spring <span class="year2"> II </span> </td>
+            <td id="Spring2_Courses" class="link spring"> </td>
+            <td id="Spring2_hrs" class="hours"> </td>
+        </tr>
+
+        <tr id="Summer2Row" class="summerrow">
+            <td class="header"> Summer <span class="year2"> II </span> </td>
+            <td id="Summer2_Courses" class="link summer">  </td>
+            <td id="Summer2_hrs" class="hours"> </td>
+        </tr>
+
+        <tr id="Fall3Row">
+            <td class="header"> Fall <span class="year2"> III </span> </td>
+            <td id="Fall3_Courses" class="link fall"> </td>
+            <td id=Fall3_hrs class="hours"> </td>
+        </tr>
+
+        <tr id="Spring3Row">
+            <td class="header"> Spring <span class="year3"> III </span> </td>
+            <td id="Spring3_Courses" class="link spring"> </td>
+            <td id="Spring3_hrs" class="hours"> </td>
+        </tr>
+
+        <tr id="Summer3Row" class="summerrow">
+            <td class="header"> Summer <span class="year3"> III </span> </td>
+            <td id="Summer3_Courses" class="link summer"> </td>
+            <td id="Summer3_hrs" class="hours"> </td>
+        </tr>
+
+        <tr id="Fall4Row">
+            <td class="header"> Fall <span class="year4"> IV </span> </td>
+            <td id="Fall4_Courses" class="link fall"> </td>
+            <td id="Fall4_hrs" class="hours"> </td>
+        </tr>
+
+        <tr id="Spring4Row">
+            <td class="header"> Spring <span class="year4"> IV </span> </td>
+            <td id="Spring4_Courses" class="link spring"> </td>
+            <td id="Spring4_hrs" class="hours"> </td>
+        </tr>
+
+        <tr id="Summer4Row" class="summerrow">
+            <td class="header"> Summer <span class="year4"> IV </span> </td>
+            <td id="Summer4_Courses" class="link summer"> </td>
+            <td id="Summer4_hrs" class="hours"> </td>
+        </tr>
+
+        <tr id="Fall5Row" class="hidden">
+            <td class="header"> Fall <span class="year5"> V </span> </td>
+            <td id="Fall5_Courses" class="link fall"> </td>
+            <td id="Fall5_hrs" class="hours"> </td>
+        </tr>
+
+        <tr id="Spring5Row" class="hidden">
+            <td class="header"> Spring <span class="year5"> V </span> </td>
+            <td id="Spring5_Courses" class="link spring"> </td>
+            <td id="Spring5_hrs" class="hours"> </td>
+        </tr>
+
+        <tr id="Summer5Row" class="hidden summerrow">
+            <td class="header"> Summer <span class="year5"> V </span> </td>
+            <td id="Summer5_Courses" class="link summer">  </td>
+            <td id="Summer5_hrs" class="hours"> </td>
+        </tr>
+
+        <tr id="Fall6Row" class="hidden">
+            <td class="header"> Fall <span class="year6"> VI </span> </td>
+            <td id="Fall6_Courses" class="link fall"> </td>
+            <td id="Fall6_hrs" class="hours"> </td>
+        </tr>
+
+        <tr id="Spring6Row" class="hidden">
+            <td class="header"> Spring <span class="year6"> VI </span> </td>
+            <td id="Spring6_Courses" class="link spring"> </td>
+            <td id="Spring6_hrs" class="hours"> </td>
+        </tr>
+
+        <tr id="Summer6Row" class="hidden summerrow">
+            <td class="header"> Summer <span class="year6"> VI </span> </td>
+            <td id="Summer6_Courses" class="link summer"> </td>
+            <td id="Summer6_hrs" class="hours"> </td>
+        </tr>
+        <tr id="lastRow">
+            <td colspan="3"> <a onclick="addRow()">+</a> </td>
+        </tr>
+    </table>
+</template>
+
+
+
+
+
+
+
+
+
+
+
+<template name="nav_bar">
+    <nav class="main-nav">
+        <ul class="top-nav">
+            <li id="navlogo"><a href="http://www.astate.edu"><img src="logo.png"/></a></li>
+            <li><a href="/index.html">Planner Home</a></li>
+            <li><a href="mailto:asm@cs.astate.edu?subject=Degree Planner">Contact Us</a></li>
+            <li><a href="/support.html">Support</a></li>
+        </ul>
+    </nav>
+</template>
+
+<template name="menu_bar">
+    <div id="toolbar">
+        <ul> <form id="toolbar_form" onsubmit="return false;">
+            <li> Select Start Year: </li>
+            <li> <select id="yearDDL" title="Select the first year you will attend classes">
+                <option value=""> </option>
+                <option value="2010">2010</option>
+                <option value="2011">2011</option>
+                <option value="2012">2012</option>
+                <option value="2013">2013</option>
+                </select></li>
+
+            <li> Select Degree Plan: </li>
+            <li> <select id="degreeDDL" title="Select your major degree">
+            <option value=""> </option>
+            {{#each degree}}
+            <option value="{{degree_id}}"> {{degree_name}} </option>
+            {{/each}}
+            </select></li>
+
+            <li> Select Minor Plan: </li>
+            <li> <select id="minorDDL" title="Select your minor if applicable. If you do not have a minor, leave this field blank">
+            <option value=""> </option>
+            <option value=""> Select Major First </option>
+            </select></li>
+
+            <div id="toolbar_rightside">
+            <li> Enter Schedule Code: </li>
+            <li title="Enter your schedule code. If you do not have a schedule code, leave this field blank">
+            <input id="codebox" type="text" /> </li>
+            <li><button id="loadButton"> Submit </button></li>
+            </div>
+        </form>
+        </ul>
+        </div>
+    </div>
+</template>
