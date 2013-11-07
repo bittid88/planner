@@ -29,7 +29,7 @@ Meteor.methods({
 
         for (var i = 0; i < courses_selected.length; i++)
         {
-            course_data[i] = Course.findOne({'Course ID': courses_selected[i]});
+            course_data[i] = Course.findOne({'course_id': courses_selected[i]});
         }
 
         return course_data;

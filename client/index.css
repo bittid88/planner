@@ -167,6 +167,7 @@ table {
     visibility: hidden;
 }
 
+
 td {
     border: 1px solid black;
     vertical-align: top;
@@ -235,52 +236,52 @@ div.course {
     margin: 3px;
 }
 
-.cs {
+.CS {
     background:linear-gradient(#FFB914, #A5570A);
 }
-.cs:hover{
+.CS:hover{
     opacity: 0.8;
 }
         
-.eng {
+.ENG {
     background:linear-gradient(#32FF32, #008700);
 }
-.eng:hover{
+.ENG:hover{
     opacity: 0.8;
 }
         
-.art{
+.ART{
     background:linear-gradient(#8C8CFF, #3C3CF6); 
 }
-.art:hover{
+.ART:hover{
     opacity: 0.8;
 }
         
-.math{
+.MATH{
     background:linear-gradient(#FF3232, #A50000); 
 }
-.math:hover{
+.MATH:hover{
     opacity: 0.8;
 }
         
-.sci{
+.SCI{
     background:linear-gradient(#C646C6, #7800A5);
 }
-.sci:hover{
+.SCI:hover{
     opacity: 0.8;
 }
         
-.ss {
+.SS {
     background:linear-gradient(#EBEB00, #FFA500);
 }
-.ss:hover {
+.SS:hover {
     opacity: 0.8;
 }
         
-.gen {
+.GEN {
     background:linear-gradient(#989898, #525252); 
 }
-.gen:hover {
+.GEN:hover {
     opacity: 0.8;
 }
         
