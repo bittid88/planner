@@ -43,8 +43,11 @@ Meteor.methods({
      *
      */
 
-    getPlanPath: function(schedule_code){
-        Plans.findOne({'code_hash' : schedule_code})
+    getPlanCode: function(schedule_code){
+       //schedule_code.toString();
+       var plan = Plan.findOne({'plan_id' : schedule_code});
+
+       return plan;
     },
 
     /*

@@ -2,6 +2,7 @@ Meteor.startup(function() {
 
     Degree = new Meteor.Collection("degree");
     Course = new Meteor.Collection("course");
+    Plan = new Meteor.Collection("plan");
 
 	if (Degree.find().count() === 0) {
 		var data = [{
@@ -16,6 +17,12 @@ Meteor.startup(function() {
 						'EE_3333','ENG_3043','PHIL_3723'],
 			electives: [
                 { elective_id: "CS_ELEC", count: 4, name: "CS Elective", subject: "CS",
+                    option: ["CS_4143"] },
+                { elective_id: "GOV_ELEC", count: 1, name: "US His/Gov Elective", subject: "SS",
+                    option: ["CS_4143"] },
+                { elective_id: "UGI_ELEC", count: 1, name: "Understanding Glob. Issues Elective", subject: "SS",
+                    option: ["CS_4143"] },
+                { elective_id: "HUM_ELEC", count: 1, name: "Humanities Elective", subject: "SS",
                     option: ["CS_4143"] },
                 { elective_id: "LIF_SCI", count: 1, name: "Life Science Elective", subject: "SCI",
                     option: ['BIO_1103'] },
@@ -123,6 +130,77 @@ Meteor.startup(function() {
 		{
 			Course.insert(data[i]);
 		}
-			
 	}
+
+    if (Plan.find().count() === 0){
+        var data = {
+            plan_id: '4a780c6bc7ea6c944dd155a44c1d5f18',
+            degree_id: 'BS_CS_2013',
+            start_year: '2013',
+            timestamp: '',
+            courses: [
+                {id: "CS_1093", pos: 'Fall1_Courses'},
+                {id: "MATH_2204", pos: 'Fall1_Courses'},
+                {id: "ENG_1003", pos: 'Fall1_Courses'},
+
+                {id: "CS_2114", pos: 'Spring1_Courses'},
+                {id: "MATH_2214", pos: 'Spring1_Courses'},
+                {id: "ENG_1013", pos: 'Spring1_Courses'},
+
+                {id: "CS_2124", pos: 'Fall2_Courses'},
+                {id: "MATH_2183", pos: 'Fall2_Courses'},
+                {id: "SCOM_1203", pos: 'Fall2_Courses'},
+
+                {id: "CS_3113", pos: 'Spring2_Courses'},
+                {id: "STAT_3233", pos: 'Spring2_Courses'},
+                {id: "ECON_2333", pos: 'Spring2_Courses'},
+                {id: "CHEM_1013", pos: 'Spring2_Courses'},
+                {id: "CHEM_1011", pos: 'Spring2_Courses'},
+
+                {id: "MATH_3243", pos: 'Fall3_Courses'},
+                {id: "EE_3333", pos: 'Fall3_Courses'},
+                {id: "CS_3223", pos: 'Fall3_Courses'},
+
+                {id: "CS_3233", pos: 'Spring3_Courses'},
+                {id: "CS_3123", pos: 'Spring3_Courses'},
+
+                {id: "CS_4113", pos: 'Fall4_Courses'},
+                {id: "CS_4713", pos: 'Fall4_Courses'},
+                {id: "CS_4543", pos: 'Fall4_Courses'},
+                {id: "ENG_3043", pos: 'Fall4_Courses'},
+
+                {id: "CS_4143", pos: 'Spring4_Courses'},
+                {id: "PHIL_3723", pos: 'Spring3_Courses'}
+            ],
+            electives: [
+                {id: "FINE_ART0", pos: 'Fall1_Courses', selection: ''},
+                {id: "GOV_ELEC0", pos: 'Fall1_Courses', selection: ''},
+
+                {id: "LIF_SCI0", pos: 'Spring1_Courses', selection: ''},
+                {id: "LIF_LAB0", pos: 'Spring1_Courses', selection: ''},
+
+                {id: "HUM_ELEC0", pos: 'Fall2_Courses', selection: ''},
+                {id: "FOR_LAN0", pos: 'Fall2_Courses', selection: ''},
+
+                {id: "FOR_LAN1", pos: 'Spring2_Courses', selection: ''},
+
+                {id: "CS_ELEC0", pos: 'Fall3_Courses', selection: ''},
+                {id: "PHY_SCI0", pos: 'Fall3_Courses', selection: ''},
+
+                {id: "PHY_SCI20", pos: 'Spring3_Courses', selection: ''},
+                {id: "UGI_ELEC0", pos: 'Spring3_Courses', selection: ''},
+                {id: "CS_ELEC1", pos: 'Spring3_Courses', selection: ''},
+
+                {id: "FREE_ELEC0", pos: 'Fall4_Courses', selection: ''},
+
+                {id: "CS_ELEC2", pos: 'Spring4_Courses', selection: ''},
+                {id: "CS_ELEC3", pos: 'Spring4_Courses', selection: ''},
+
+
+
+            ]
+        }
+        Plan.insert(data);
+    }
+
 })

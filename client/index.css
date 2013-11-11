@@ -14,14 +14,6 @@ body{
     font-family: "Times New Roman", Times, serif, Arial;
 }
 
-#saveButton {
-    float: right;
-    length: 65px;
-    height: 35px;
-    margin-right: 20px;
-    margin-top: 10px;
-}
-
 a {
     color:#FFFFFF;
     text-decoration: none;
@@ -36,7 +28,7 @@ a:focus
 
 /* PLANNER TOOL BAR */
 
-#toolbar {
+.toolbar {
     display: inline;
     list-style-type: none;
     float: left;
@@ -52,12 +44,12 @@ a:focus
     box-shadow: 2px 2px 3px black;
 }
 
-#toolbar ul {
+.toolbar ul {
     list-style-type: none;
     padding-left: 15px;
 }
 
-#toolbar li {
+.toolbar li {
     float: left;
     font-size: 0.9em;
     padding-top: 5px;
@@ -66,11 +58,11 @@ a:focus
     padding-right: 7px;
 }
 
-#toolbar li.or {
+.toolbar li.or {
    padding-left: 28px;
 }
 
-#toolbar_rightside {
+.toolbar_rightside {
     float: right;
     padding-right: 10px;
 }
