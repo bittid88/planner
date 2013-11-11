@@ -33,6 +33,71 @@ Meteor.methods({
         }
 
         return course_data;
+    },
+
+    /*
+     * Method getPlanPath
+     * Argument 1: A hash of the user-entered schedule code, looks into the database to see if anything matches it
+     *
+     * Return Value: A path to a file on the server containing the correct plan information
+     *
+     */
+
+    getPlanPath: function(schedule_code){
+        Plans.findOne({'code_hash' : schedule_code})
+    },
+
+    /*
+     * Method writeFile
+     * Argument 1: A string that represents a partial path on the server file system that will
+     *             provide the location of a data file.
+     * Argument 2: A string representing the data to write to the opened file.
+     *
+     * Return Value: None.
+     *
+     * Usage:      Creates a file on the server file system (or overwrites if one already exists) the
+     *             file for the given path. The information in the second argument, data, is then written to that
+     *             file, and then the file is closed.
+     */
+    writeFile: function(path, data) {
+
+        var fs = Npm.require('fs');
+
+        var full_path = './plan_data/' + path + '.txt';
+
+        var fd = fs.openSync('.txt', 'w+');
+
+        var buffer = data;
+
+        fs.writeSync(fd, buffer)
+
+        fs.closeSync(fd);
+
+    },
+
+    /*
+     * Method readFile
+     * Argument 1: A partial path that represents the location of a file on the server's file system
+     *
+     * Return value: The data contained within the specified value, or nothing if the file does not exist.
+     *
+     * Usage: Reads the data from a file on the server and returns it. This data should represent the plan code.
+     *
+     */
+    readFile: function(path) {
+
+        var fs = Npm.require('fs');
+
+        var full_path = './plan_data/' + path + '.txt';
+
+        var fd = fs.openSync(full_path, 'r');
+
+        var result = "";
+
+        fs.readSync(fd, result, 0, 9999, 0);
+
+        return result;
+
     }
 
 })
