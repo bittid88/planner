@@ -17,7 +17,7 @@ Meteor.startup(function() {
 						'EE_3333','ENG_3043','PHIL_3723'],
 			electives: [
                 { elective_id: "CS_ELEC", count: 4, name: "CS Elective", subject: "CS",
-                    option: ["CS_4143"] },
+                    option: ["CS_4233", "CS_482V", "CS_4723", "CS_4313", "CS_4413", "MATH_4533", "CS_4133", "CS_4433" ] },
                 { elective_id: "GOV_ELEC", count: 1, name: "US His/Gov Elective", subject: "SS",
                     option: ["CS_4143"] },
                 { elective_id: "UGI_ELEC", count: 1, name: "Understanding Glob. Issues Elective", subject: "SS",
@@ -103,7 +103,7 @@ Meteor.startup(function() {
 {"course_id":"MATH_2183","name":"Discrete Structures","subject":"MATH","credit_hours":3,"category":"Core","corequisite":null,"prerequisite":"","season":"Spring, Fall","year":""},
 {"course_id":"MATH_2214","name":"Calculus II","subject":"MATH","credit_hours":4,"category":"Core","corequisite":null,"prerequisite":"MATH_2204","season":"Spring, Fall, Summer","year":""},
 {"course_id":"MATH_3243","name":"Linear Algebra","subject":"MATH","credit_hours":3,"category":"Core","corequisite":null,"prerequisite":"MATH_2214","season":"Spring, Summer","year":""},
-{"course_id":"STAT_3233","name":"Applied Statistics_I","subject":"MATH","credit_hours":3,"category":"Core","corequisite":null,"prerequisite":"","season":"Spring, Fall, Summer","year":""},
+{"course_id":"STAT_3233","name":"Applied Statistics I","subject":"MATH","credit_hours":3,"category":"Core","corequisite":null,"prerequisite":"","season":"Spring, Fall, Summer","year":""},
 {"course_id":"CHEM_1013","name":"General Chemistry I","subject":"SCI","credit_hours":3,"category":"Core","corequisite":null,"prerequisite":"","season":"Spring, Fall, Summer","year":""},
 {"course_id":"CHEM_1011","name":"General Chemistry I Lab","subject":"SCI","credit_hours":1,"category":"Core","corequisite":null,"prerequisite":"","season":"Spring, Fall, Summer","year":""},
 {"course_id":"PHYS_2044","name":"University Physics II","subject":"SCI","credit_hours":4,"category":"Core","corequisite":'MATH_2214',"prerequisite":"","season":"Spring, Fall","year":""},
@@ -195,9 +195,6 @@ Meteor.startup(function() {
 
                 {id: "CS_ELEC2", pos: 'Spring4_Courses', selection: ''},
                 {id: "CS_ELEC3", pos: 'Spring4_Courses', selection: ''},
-
-
-
             ]
         }
         Plan.insert(data);

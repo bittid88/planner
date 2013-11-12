@@ -2,6 +2,7 @@ Degree = new Meteor.Collection("degree");
 Course = new Meteor.Collection("course");
 Plan = new Meteor.Collection("plan");
 
+
 Template.body.events ({
     'click a.new': function(){
         Session.set('selected', 'new');
@@ -121,7 +122,8 @@ Template.new_plan_bar.events ({
                     $(plan_electives).each( function(){
                         moveCourse(this.id, this.pos);
                         selectCourse(this.id, this.selection);
-                    })
+                    });
+                hours();
                 // Hide all unused rows
                 $('td.link').each( function(){
                     if($(this).children().length === 0)
@@ -135,7 +137,6 @@ Template.new_plan_bar.events ({
            });
 
         });
-
        // END getDegreeData
     })
  },
@@ -180,10 +181,31 @@ Template.course_grid.course = function(){
     return a;
 };
 
-Template.course_grid.rendered = function() {
+Template.course_grid.rendered = function () {
 
-    if ($('div.course').length === 0)
-    {
+    // Set Slot Numbers for sortable areas
+    $('#Transfer_Courses').data('slot', 0);
+    $('#Fall1_Courses').data('slot', 1);
+    $('#Spring1_Courses').data('slot', 2);
+    $('#Summer1_Courses').data('slot', 3);
+    $('#Fall2_Courses').data('slot', 4);
+    $('#Spring2_Courses').data('slot', 5);
+    $('#Summer2_Courses').data('slot', 6);
+    $('#Fall3_Courses').data('slot', 7);
+    $('#Spring3_Courses').data('slot', 8);
+    $('#Summer3_Courses').data('slot', 9);
+    $('#Fall4_Courses').data('slot', 10);
+    $('#Spring4_Courses').data('slot', 11);
+    $('#Summer4_Courses').data('slot', 12);
+    $('#Fall5_Courses').data('slot', 13);
+    $('#Spring5_Courses').data('slot', 14);
+    $('#Summer5_Courses').data('slot', 15);
+    $('#Fall6_Courses').data('slot', 16);
+    $('#Spring6_Courses').data('slot', 17);
+    $('#Summer6_Courses').data('slot', 18);
+
+
+    if ($('div.course').length === 0) {
         console.log($('div.course').length);
         $('tr').hide();
     }
@@ -192,7 +214,11 @@ Template.course_grid.rendered = function() {
         {   connectWith: ".link",
             dropOnEmpty: true,
             tolerance: "pointer",
-            cursorAt: { top: 22, left: 50 }
+            cursorAt: { top: 22, left: 50 },
+            update: function(e,obj){
+                hours();
+            }
+
         }).disableSelection();
 
 };
@@ -221,6 +247,26 @@ function moveCourse(obj_id, position)
     var position = '#' + position;
     $(obj_id).appendTo(position);
 }
+
+
+// Hours function. It counts hours.
+
+function hours()
+{
+   var totals = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+   var courses = $('div:data(hours)');
+   $(courses).each( function() {
+        var slot = $(this).parent().data('slot');
+        totals[slot] += $(this).data('hours');
+   })
+   var hours_col = $('.hours');
+   for (var i = 0; i < hours_col.length; i++ )
+   {
+       $(hours_col[i]).html(totals[i]);
+   }
+}
+
+
 
 // MD5 Hashing function by Joseph Myers.
 

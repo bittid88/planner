@@ -224,6 +224,13 @@ td>a {
     font-weight: bold;
 }
 
+#firstRow {
+    color: #fff;
+    background-color: #4f4f4f;
+    text-align: center;
+    font-weight: bold;
+}
+
 #CoursesCol{
     height: 45px;
 }
