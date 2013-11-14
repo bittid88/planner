@@ -124,6 +124,9 @@ Template.new_plan_bar.events ({
                         selectCourse(this.id, this.selection);
                     });
                 hours();
+                season();
+                prereq();
+                coreq();
                 // Hide all unused rows
                 $('td.link').each( function(){
                     if($(this).children().length === 0)
@@ -147,7 +150,6 @@ Template.new_plan_bar.events ({
  },
 
  'click .toggleHidden': function(e){
-    console.log(Session.get('toggle'));
      var toggle_button = e.target;
         if (Session.get('toggle') === 0)
         {
@@ -206,7 +208,6 @@ Template.course_grid.rendered = function () {
 
 
     if ($('div.course').length === 0) {
-        console.log($('div.course').length);
         $('tr').hide();
     }
 
@@ -217,6 +218,9 @@ Template.course_grid.rendered = function () {
             cursorAt: { top: 22, left: 50 },
             update: function(e,obj){
                 hours();
+                season();
+                prereq();
+                coreq();
             }
 
         }).disableSelection();
@@ -229,8 +233,6 @@ Template.course_grid.events ({
 
         var elective = e.target;
         var stuff = $(elective).data('option');
-
-        console.log(stuff);
     }
 
 });
@@ -266,6 +268,121 @@ function hours()
    }
 }
 
+function season()
+{
+    $('div:data(season)').each( function() {
+        var availability = $(this).data('season');
+        availability = availability.split(", ");
+        var pos = $(this).parent().data('slot');
+        if (pos != 0)
+        {
+            pos = pos % 3;
+            var flag = 0;
+            for (var i = 0; i < availability.length; i++)
+            {
+                if (availability[i] == "Fall")
+                {
+                    flag += 1;
+                }
+                else if (availability[i] == "Spring")
+                {
+                    flag += 2;
+                }
+                else if (availability[i] == "Summer")
+                {
+                    flag += 4;
+                }
+            }
+
+
+
+                switch (pos){
+                case 0: // Summer
+                    if ( (flag & 4) !== 4)
+                    { $(this).addClass('seasonConflict') }
+
+                    else if ( $(this).hasClass('seasonConflict') )
+                    { $(this).removeClass('seasonConflict') }
+
+                    break;
+                case 1: // Fall
+                    if ( (flag & 1) !== 1)
+                    { $(this).addClass('seasonConflict') }
+
+                    else if ( $(this).hasClass('seasonConflict') )
+                    { $(this).removeClass('seasonConflict') }
+                    break;
+                case 2: // Spring
+                    if ( (flag & 2) !== 2)
+                    { $(this).addClass('seasonConflict') }
+
+                    else if ( $(this).hasClass('seasonConflict') )
+                    { $(this).removeClass('seasonConflict') }
+                    break;
+
+                default:
+                    break;
+            }
+
+        }
+    });
+}
+
+function prereq(){
+    $('div:data(prerequisite)').each( function() {
+
+        var prereqs = $(this).data('prerequisite');
+        var conflict = false;
+        prereqs = prereqs.split(", ");
+
+        if ($(this).parent().data('slot') !== 0)
+        {
+            for (var i = 0; i < prereqs.length; i++)
+            {
+                if ($(this).parent().data('slot') <= $('#' + prereqs[i]).parent().data('slot'))
+                {
+                    conflict = true;
+                    i = 100;
+                }
+            }
+
+            if (conflict === true)
+            { $(this).addClass('prereq'); }
+            else if($(this).hasClass('prereq'))
+            { $(this).removeClass('prereq'); }
+        }
+        else if ($(this).hasClass('prereq'))
+        { $(this).removeClass('prereq'); }
+    })
+}
+
+function coreq(){
+    $('div:data(corequisite)').each( function() {
+
+        var coreqs = $(this).data('corequisite');
+        var conflict = false;
+        coreqs = coreqs.split(", ");
+        console.log(coreqs);
+        if ($(this).parent().data('slot') !== 0)
+        {
+            for (var i = 0; i < coreqs.length; i++)
+            {
+                if ($(this).parent().data('slot') <= $('#' + coreqs[i]).parent().data('slot'))
+                {
+                    conflict = true;
+                    i = 100;
+                }
+            }
+
+            if (conflict === true)
+            { $(this).addClass('coreq'); }
+            else if($(this).hasClass('coreq'))
+            { $(this).removeClass('coreq'); }
+        }
+        else if ($(this).hasClass('coreq'))
+        { $(this).removeClass('coreq'); }
+    })
+}
 
 
 // MD5 Hashing function by Joseph Myers.

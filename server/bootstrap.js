@@ -10,7 +10,7 @@ Meteor.startup(function() {
 			degree_name: 'BS Computer Science 2013',
 			year: 	'2013',
 			department_id: 'CSCI',
-			courses: [ 'CS_1093','CS_2114','CS_2124','CS_3113', 'CS_3233',
+			courses: [ 'CS_1093','CS_2114','CS_2124','CS_3113', 'CS_3123', 'CS_3233',
 						'CS_4113','CS_4143','CS_4543','CS_4713', 'ENG_1003',
 						'ENG_1013','SCOM_1203','MATH_2204','MATH_2183','MATH_2214',
 						'MATH_3243','STAT_3233','CHEM_1013', 'CHEM_1011', 'ECON_2333',
