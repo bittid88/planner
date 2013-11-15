@@ -4,7 +4,26 @@
 <body>
     {{> nav_bar }}
     {{> body }}
+    {{> dialog }}
 </body>
+
+<template name="dialog">
+    <div id="dialog_elective" class="course_dialog">
+        <select id="ddl_elective">
+
+            {{#unless option}}
+            <option value="1hr">1 Hour Elective</option>
+            <option value="2hr">2 Hour Elective</option>
+            <option value="3hr">3 Hour Elective</option>
+            <option value="4hr">4 Hour Elective</option>
+            {{/unless}}
+
+            {{#each option}}
+                <option value ="course_id">{{name}}</option>
+            {{/each }}
+        </select>
+    </div>
+</template>
 
 <template name="body">
     {{#if selected }}
@@ -52,109 +71,109 @@
         </tr>
 
         <tr id="Fall1Row">
-            <td class="header"> Fall {{year.one}} </td>
+            <td class="header"> Fall I </td>
             <td id="Fall1_Courses" class="link fall"> </td>
             <td id="Fall1_hrs" class="hours"> </td>
         </tr>
 
         <tr id="Spring1Row">
-            <td class="header"> Spring {{year.two}} </td>
+            <td class="header"> Spring I </td>
             <td id="Spring1_Courses" class="link spring"> </td>
             <td id="Spring1_hrs" class="hours"> </td>
         </tr>
 
         <tr id="Summer1Row" class="summerrow">
-            <td class="header"> Summer {{year.two}} </td>
+            <td class="header"> Summer I </td>
             <td id="Summer1_Courses" class="link summer"> </td>
             <td id="Summer1_hrs" class="hours"> </td>
         </tr>
 
         <tr id="Fall2Row">
-            <td class="header"> Fall {{year.two}} </td>
+            <td class="header"> Fall II </td>
             <td id="Fall2_Courses" class="link fall"> </td>
             <td id="Fall2_hrs" class="hours"> </td>
         </tr>
 
         <tr id="Spring2Row">
-            <td class="header"> Spring {{year.three}} </td>
+            <td class="header"> Spring II </td>
             <td id="Spring2_Courses" class="link spring"> </td>
             <td id="Spring2_hrs" class="hours"> </td>
         </tr>
 
         <tr id="Summer2Row" class="summerrow">
-            <td class="header"> Summer {{year.three}} </td>
+            <td class="header"> Summer II </td>
             <td id="Summer2_Courses" class="link summer">  </td>
             <td id="Summer2_hrs" class="hours"> </td>
         </tr>
 
         <tr id="Fall3Row">
-            <td class="header"> Fall {{year.three}} </td>
+            <td class="header"> Fall III </td>
             <td id="Fall3_Courses" class="link fall"> </td>
             <td id=Fall3_hrs class="hours"> </td>
         </tr>
 
         <tr id="Spring3Row">
-            <td class="header"> Spring {{year.four}} </td>
+            <td class="header"> Spring III </td>
             <td id="Spring3_Courses" class="link spring"> </td>
             <td id="Spring3_hrs" class="hours"> </td>
         </tr>
 
         <tr id="Summer3Row" class="summerrow">
-            <td class="header"> Summer {{year.four}} </td>
+            <td class="header"> Summer III </td>
             <td id="Summer3_Courses" class="link summer"> </td>
             <td id="Summer3_hrs" class="hours"> </td>
         </tr>
 
         <tr id="Fall4Row">
-            <td class="header"> Fall {{year.four}} </td>
+            <td class="header"> Fall IV </td>
             <td id="Fall4_Courses" class="link fall"> </td>
             <td id="Fall4_hrs" class="hours"> </td>
         </tr>
 
         <tr id="Spring4Row">
-            <td class="header"> Spring {{year.five}} </td>
+            <td class="header"> Spring IV </td>
             <td id="Spring4_Courses" class="link spring"> </td>
             <td id="Spring4_hrs" class="hours"> </td>
         </tr>
 
         <tr id="Summer4Row" class="summerrow">
-            <td class="header"> Summer {{year.five}} </td>
+            <td class="header"> Summer IV </td>
             <td id="Summer4_Courses" class="link summer"> </td>
             <td id="Summer4_hrs" class="hours"> </td>
         </tr>
 
         <tr id="Fall5Row" class="hidden">
-            <td class="header"> Fall {{year.five}} </td>
+            <td class="header"> Fall V </td>
             <td id="Fall5_Courses" class="link fall"> </td>
             <td id="Fall5_hrs" class="hours"> </td>
         </tr>
 
         <tr id="Spring5Row" class="hidden">
-            <td class="header"> Spring {{year.six}} </td>
+            <td class="header"> Spring V </td>
             <td id="Spring5_Courses" class="link spring"> </td>
             <td id="Spring5_hrs" class="hours"> </td>
         </tr>
 
         <tr id="Summer5Row" class="hidden summerrow">
-            <td class="header"> Summer {{year.six}} </td>
+            <td class="header"> Summer V </td>
             <td id="Summer5_Courses" class="link summer">  </td>
             <td id="Summer5_hrs" class="hours"> </td>
         </tr>
 
         <tr id="Fall6Row" class="hidden">
-            <td class="header"> Fall {{year.six}} </td>
+            <td class="header"> Fall VI </td>
             <td id="Fall6_Courses" class="link fall"> </td>
             <td id="Fall6_hrs" class="hours"> </td>
         </tr>
 
         <tr id="Spring6Row" class="hidden">
-            <td class="header"> Spring {{year.seven}} </td>
+            <td class="header"> Spring VI </td>
             <td id="Spring6_Courses" class="link spring"> </td>
             <td id="Spring6_hrs" class="hours"> </td>
         </tr>
 
         <tr id="Summer6Row" class="hidden summerrow">
-            <td class="header"> Summer {{year.seven}} </td>
+            <td class="header"> Summer VI </td>
             <td id="Summer6_Courses" class="link summer"> </td>
             <td id="Summer6_hrs" class="hours"> </td>
         </tr>
@@ -162,6 +181,7 @@
             <td colspan="3"> Dr. Hung-Chi Su, Ian Bitts, Quan Nguyen et al. @ ASM 2013 </td>
         </tr>
     </table>
+
 </template>
 
 

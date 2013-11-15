@@ -2,6 +2,41 @@ Degree = new Meteor.Collection("degree");
 Course = new Meteor.Collection("course");
 Plan = new Meteor.Collection("plan");
 
+Template.dialog.events({
+    'change #ddl_elective': function(){
+        $('#dialog_elective').dialog('close');
+    }
+
+})
+
+Template.dialog.rendered =  function() {
+    $('#dialog_elective').dialog({
+        type: 'no-close',
+        modal: true,
+        autoOpen: false,
+        width: 230,
+        maxHeight: 80,
+        minHeight: 0,
+        //buttons: [
+         //   {
+                //text: "OK",
+                //click: function() {
+                //     $(this).dialog( "close" )
+                // }
+        //    }
+        //]
+    });
+}
+
+Template.dialog.option = function() {
+    var option = Session.get('option');
+    console.log(option);
+    if (option == null)
+    { return 0; }
+    else
+    return option;
+
+}
 
 Template.body.events ({
     'click a.new': function(){
@@ -13,20 +48,6 @@ Template.body.events ({
     }
 })
 
-Template.course_grid.year = function(){
-    var year = parseInt(Session.get('startYear'));
-    var data = {
-        'one': year,
-        'two': year + 1,
-        'three': year + 2,
-        'four': year + 3,
-        'five': year + 4,
-        'six': year + 5,
-        'seven': year + 6
-    }
-
-    return data;
-}
 
 Template.Load_State.new = function(){
     var load_state = Session.get('selected');
@@ -146,7 +167,17 @@ Template.new_plan_bar.events ({
 
 'change #yearDDL': function() {
     var start_year = $('#yearDDL option:selected').val();
-    Session.set('startYear', start_year)
+    var year = parseInt(start_year);
+    var data = [year, year + 1, year + 2, year + 3, year + 4, year + 6];
+    var headers = $('td.header');
+    var j = 0;
+    for (var i = 1; i < headers.length; i = i + 3)
+    {
+        $(headers[i]).html('Fall ' + data[j]);
+        $(headers[i + 1]).html('Spring ' + data[j + 1]);
+        $(headers[i + 2]).html('Summer ' + data[j + 1]);
+        j++;
+    }
  },
 
  'click .toggleHidden': function(e){
@@ -179,33 +210,33 @@ Template.new_plan_bar.events ({
 });
 
 Template.course_grid.course = function(){
-    var a = Session.get('courses');
-    return a;
+    return Session.get('courses');
 };
 
 Template.course_grid.rendered = function () {
-
     // Set Slot Numbers for sortable areas
-    $('#Transfer_Courses').data('slot', 0);
-    $('#Fall1_Courses').data('slot', 1);
-    $('#Spring1_Courses').data('slot', 2);
-    $('#Summer1_Courses').data('slot', 3);
-    $('#Fall2_Courses').data('slot', 4);
-    $('#Spring2_Courses').data('slot', 5);
-    $('#Summer2_Courses').data('slot', 6);
-    $('#Fall3_Courses').data('slot', 7);
-    $('#Spring3_Courses').data('slot', 8);
-    $('#Summer3_Courses').data('slot', 9);
-    $('#Fall4_Courses').data('slot', 10);
-    $('#Spring4_Courses').data('slot', 11);
-    $('#Summer4_Courses').data('slot', 12);
-    $('#Fall5_Courses').data('slot', 13);
-    $('#Spring5_Courses').data('slot', 14);
-    $('#Summer5_Courses').data('slot', 15);
-    $('#Fall6_Courses').data('slot', 16);
-    $('#Spring6_Courses').data('slot', 17);
-    $('#Summer6_Courses').data('slot', 18);
 
+    if( $(':data(slot)').length === 0 ) {
+        $('#Transfer_Courses').data('slot', 0);
+        $('#Fall1_Courses').data('slot', 1);
+        $('#Spring1_Courses').data('slot', 2);
+        $('#Summer1_Courses').data('slot', 3);
+        $('#Fall2_Courses').data('slot', 4);
+        $('#Spring2_Courses').data('slot', 5);
+        $('#Summer2_Courses').data('slot', 6);
+        $('#Fall3_Courses').data('slot', 7);
+        $('#Spring3_Courses').data('slot', 8);
+        $('#Summer3_Courses').data('slot', 9);
+        $('#Fall4_Courses').data('slot', 10);
+        $('#Spring4_Courses').data('slot', 11);
+        $('#Summer4_Courses').data('slot', 12);
+        $('#Fall5_Courses').data('slot', 13);
+        $('#Spring5_Courses').data('slot', 14);
+        $('#Summer5_Courses').data('slot', 15);
+        $('#Fall6_Courses').data('slot', 16);
+        $('#Spring6_Courses').data('slot', 17);
+        $('#Summer6_Courses').data('slot', 18);
+    }
 
     if ($('div.course').length === 0) {
         $('tr').hide();
@@ -224,7 +255,6 @@ Template.course_grid.rendered = function () {
             }
 
         }).disableSelection();
-
 };
 
 Template.course_grid.events ({
@@ -232,12 +262,32 @@ Template.course_grid.events ({
     'dblclick .elective': function(e) {
 
         var elective = e.target;
-        var stuff = $(elective).data('option');
+        console.log(e.target);
+        var option_list = $(elective).data('option');
+        console.log(option_list);
+        if (option_list != null){
+            Meteor.call('getCourseData', option_list, function(err, result) {
+                if ( result !== null )
+                {
+                    Session.set('option', result);
+                    $('#dialog_elective').dialog('open');
+                    $('#dialog_elective').dialog("widget").position({ my: 'left', at: 'left', of: e.target });
+                }
+            })
+        }
+        else
+        {
+            Session.set('option', 0);
+        }
+        $('#dialog_elective').dialog('open');
+        $('#dialog_elective').dialog("widget").position({ my: 'left', at: 'left', of: e.target });
     }
 
 });
 
-
+/////////////////////////////////////////
+////// FUNCTIONS ////////////////////////
+/////////////////////////////////////////
 function selectCourse(course, selection){
 
 }

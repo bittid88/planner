@@ -17,7 +17,7 @@ Meteor.startup(function() {
 						'EE_3333','ENG_3043','PHIL_3723'],
 			electives: [
                 { elective_id: "CS_ELEC", count: 4, name: "CS Elective", subject: "CS",
-                    option: ["CS_4233", "CS_482V", "CS_4723", "CS_4313", "CS_4413", "MATH_4533", "CS_4133", "CS_4433" ] },
+                    option: ["CS_4223", "CS_482V", "CS_4723", "CS_4313", "CS_4413", "MATH_4533", "CS_4133", "CS_4433" ] },
                 { elective_id: "GOV_ELEC", count: 1, name: "US His/Gov Elective", subject: "SS",
                     option: ["CS_4143"] },
                 { elective_id: "UGI_ELEC", count: 1, name: "Understanding Glob. Issues Elective", subject: "SS",
@@ -37,7 +37,7 @@ Meteor.startup(function() {
                 { elective_id: 'FOR_LAN', count: 2, name: "Foreign Language Elective", subject: 'SS',
                     option: ['GER_1101'] },
                 { elective_id: 'FREE_ELEC', count: 4, name: "Free Elective", subject: 'GEN',
-                    option: ['ART_2034'] }
+                    option: null }
 			]
 		},
 		

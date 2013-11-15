@@ -74,14 +74,6 @@ a:focus
     width: 160px;
 }
 
-
-/* LEFT SIDE MENU */
-#left_side {
-    float: left;
-    margin-left: 20px;
-    width: 300px;
-}
-
 #course_tabs>ul{
     margin: 0;
     padding: 0px 15px;
@@ -408,8 +400,7 @@ nav.main-nav {
 
 /********* DIALOG BOX ***********/
 
-#course_dialog {
-    z-index:2;
+.course_dialog {
     color: #fff;
     padding: 3px;
     background-image:linear-gradient(#CC0000, #660000);
@@ -420,4 +411,18 @@ nav.main-nav {
 
 .ui-dialog-titlebar-close {
   visibility: hidden;
+}
+
+button.ui-button {
+    display: inline-block;
+}
+
+#ddl_elective {
+    width: 220px;
+}
+
+.ui-dialog {
+    display: inline-block;
+    vertical-align: middle;
+    overflow: hidden;
 }
